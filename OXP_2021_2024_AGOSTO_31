@@ -1,0 +1,60 @@
+import matplotlib.pyplot as plt
+
+# Datos de la tabla
+years = ["2021", "2022", "2023", "2024_Agosto 31"]
+contracts = [
+    "ACTA", "ARRENDAMIENTO", "CONSULTORÍA (DISEÑO)", "CONSULTORÍA (INTERVENTORÍA)",
+    "CONTRATO DE COMPRAVENTA", "CONTRATO DE INTERVENTORIA", "CONTRATO DE OBRA",
+    "CONTRATO DE OBRA PUBLICA", "CONTRATO DE PRESTACION DE SERVICIOS",
+    "CONTRATO DE PRESTACION DE SERVICIOS DE APOYO A LA GESTION", "FACTURA",
+    "PRESTACIÓN DE SERVICIOS (Persona Jurídica)", "PRESTACIÓN DE SERVICIOS (Persona Natural)",
+    "PRESTACIÓN DE SERVICIOS (actividades recreodeportivas, culturales, participación etc.)",
+    "CONTRATO DE PRESTACION DE SERVICIOS PROFESIONALES", "CONTRATO DE SUMINISTRO",
+    "CONTRATOS INTERADMINISTRATIVOS", "CONVENIO INTERADMINISTRATIVO", "CONVENIO DE ASOCIACIÓN",
+    "RESOLUCION", "SEGUROS", "ORDEN DE COMPRA", "OTRO"
+]
+
+values_2021 = [
+    0, 0, 0, 0, 607115535, 535261435, 5808060615, 1805840903, 125531343,
+    13535001, 0, 0, 0, 0, 10501333, 18497390, 5175109, 76077870, 0, 0,
+    0, 0, 0
+]
+
+values_2022 = [
+    0, 0, 0, 0, 5564260, 671772158, 0, 6044572958, 0,
+    489616904, 0, 0, 0, 43727924, 0, 26019342, 250100000,
+    815674597, 0, 0, 10762010, 0, 60
+]
+
+values_2023 = [
+    0, 27, 47841266, 719414802, 126261488,
+    -1 , -1 ,5082478023 , -1 , -1 ,4712480 ,1169530222 ,91089037 ,-1 ,-1 ,25851568 ,42300000 ,259291499 ,252125427 ,-1 ,22256640 ,2377355 ,-1 
+]
+
+values_2024 = [
+    -1 ,-1 ,-1 ,710484713 ,385206499 ,-1 ,-1 ,5421592306 ,-1 ,-1 ,21799446 ,1314389186 ,57400004 ,-1 ,-1 ,7736343 ,20000000 ,426789305 ,252125427 ,544519 ,-1 ,-1 ,-1 
+]
+
+# Graficar los datos
+fig, ax = plt.subplots(figsize=(15,10))
+
+# Graficar cada tipo de contrato
+for i in range(len(contracts)):
+    ax.plot(years,
+            [values_2021[i], values_2022[i], values_2023[i], values_2024[i]],
+            marker='o', label=contracts[i])
+
+# Título y etiquetas del gráfico
+ax.set_title('Valor OXP por Tipo de Contrato (2021-2024)')
+ax.set_xlabel('Año')
+ax.set_ylabel('Valor OXP')
+
+# Rotar etiquetas del eje x para mejor legibilidad
+plt.xticks(rotation=45)
+
+# Añadir leyenda
+plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+
+# Mostrar gráfico
+plt.tight_layout()
+plt.show()
