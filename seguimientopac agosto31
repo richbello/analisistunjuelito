@@ -1,0 +1,42 @@
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# Crear un DataFrame con los datos
+data = {
+    'Mes': ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto'],
+    'PAC Inicial': [557321201, 7546247594, 6484332653, 7757709522, 6708009755, 36781216017, 30695100728, 3786964222],
+    'PAC Reprogramado': [75839405, 739697421, 2326964873, 3960082955, 2519869707, 1761648256, 1250279217, 1250924004],
+    'PAC Actual': [481481796, 6806550173, 4157367780, 3797626567, 4188140048, 4190954237, 5269612405, 5037888226],
+    'Disponibilidad PAC': [9825847, 14226242, 73075972, 28098757, 10898177, 30828613524, 26675767540, 8564542],
+    'Comprometido PAC': [-1160000, -1117200, -51379880, 347053860, -924400, 0, -361514906, -449150],
+    'PAC Girado': [472815949, 6793441131, 4135671688, 3422473950, 4178166271, 4190954237, 5631127311, 5029772834],
+    '%': [84.84, 90.02, 63.78, 44.12, 62.29, 11.39, 18.35, 132.82]
+}
+
+df = pd.DataFrame(data)
+
+# Crear la gráfica
+fig, ax = plt.subplots(figsize=(10, 6))
+
+# Graficar el % de cada mes
+ax.bar(df['Mes'], df['%'], color=['red' if val > 100 else 'blue' for val in df['%']])
+
+# Añadir etiquetas y título
+ax.set_xlabel('Mes')
+ax.set_ylabel('Porcentaje (%)')
+ax.set_title('PAC Girado como % del PAC Actual por Mes')
+ax.set_ylim(0, 150)
+
+# Añadir los valores porcentuales encima de las barras
+for idx, val in enumerate(df['%']):
+    ax.text(idx, val + 2, f'{val}%', ha='center', color='black')
+
+# Guardar la gráfica como PNG
+plt.tight_layout()
+plt.savefig('/mnt/data/grafica_pac.png', format='png')
+
+# Mostrar la gráfica
+plt.show()
+
+# Guardar la gráfica en el directorio actual
+plt.savefig('grafica_pac.png', format='png')
