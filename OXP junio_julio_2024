@@ -1,0 +1,62 @@
+import matplotlib.pyplot as plt
+
+# Datos de la tabla
+months = ["2024_Junio 30", "2024_Julio 31", "2024_Agosto 31"]
+contracts = [
+    "ACTA", "ARRENDAMIENTO", "CONSULTORÍA (DISEÑO)", "CONSULTORÍA (INTERVENTORÍA)",
+    "CONTRATO DE COMPRAVENTA", "CONTRATO DE INTERVENTORIA", "CONTRATO DE OBRA",
+    "CONTRATO DE OBRA PUBLICA", "CONTRATO DE PRESTACION DE SERVICIOS",
+    "CONTRATO DE PRESTACION DE SERVICIOS DE APOYO A LA GESTION", "FACTURA",
+    "PRESTACIÓN DE SERVICIOS (Persona Jurídica)", "PRESTACIÓN DE SERVICIOS (Persona Natural)",
+    "PRESTACIÓN DE SERVICIOS (actividades recreodeportivas, culturales, participación etc.)",
+    "CONTRATO DE PRESTACION DE SERVICIOS PROFESIONALES", "CONTRATO DE SUMINISTRO",
+    "CONTRATOS INTERADMINISTRATIVOS", "CONVENIO INTERADMINISTRATIVO", "CONVENIO DE ASOCIACIÓN",
+    "RESOLUCION", "SEGUROS", "ORDEN DE COMPRA", "OTRO"
+]
+
+values_june = [
+    6306750, 27, 0, 988131567, 434919132, 0, 0, 7521355017, 0, 0,
+    59294987, 2422875920, 325562114, 0, 0, 626007862, 160000000,
+    628714125, 252125427, 544519, 751345, 28962363, 0
+]
+
+values_july = [
+    277210, 27, 0, 778719487, 389775967, 0, 0, 5901516344, 0, 0,
+    59081047, 1956661268, 90942347, 0, 0, 18379283, 160000000,
+    577469168, 252125427, 544519, 0, 9265925, 0
+]
+
+values_august = [
+    0, 27, 0, 710484713, 385206499, 0, 0, 5421592306, 0, 0,
+    21799446, 1314389186, 57400004, 0, 0, 7736343, 20000000,
+    426789305, 252125427, 544519, 0, 0, 0
+]
+
+# Graficar los datos
+fig, ax = plt.subplots(figsize=(15,10))
+
+# Graficar cada tipo de contrato
+for i in range(len(contracts)):
+    ax.plot(months,
+            [values_june[i], values_july[i], values_august[i]],
+            marker='o', label=contracts[i])
+
+# Título y etiquetas del gráfico
+ax.set_title('Valor OXP por Tipo de Contrato (2024)')
+ax.set_xlabel('Mes')
+ax.set_ylabel('Valor OXP')
+
+# Rotar etiquetas del eje x para mejor legibilidad
+plt.xticks(rotation=45)
+
+# Añadir leyenda
+plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+
+# Guardar gráfico como archivo PNG
+plt.tight_layout()
+plt.savefig("valor_oxp_por_tipo_de_contrato_2024.png")
+
+# Mostrar gráfico
+plt.show()
+
+print("El gráfico ha sido guardado como 'valor_oxp_por_tipo_de_contrato_2024.png'.")
